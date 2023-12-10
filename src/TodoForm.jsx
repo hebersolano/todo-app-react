@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function TodoForm() {
+export default function TodoForm({ ctrl }) {
   const [input, setInput] = useState("");
 
   function handleChange(event) {
@@ -9,7 +9,11 @@ export default function TodoForm() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    console.log(event.target.value);
+    const inputValue = event.target[0].value;
+    if (inputValue) {
+      ctrl.addTodo(event.target[0].value);
+    }
+    // console.log(event.target[0].value);
   }
 
   return (

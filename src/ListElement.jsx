@@ -1,12 +1,13 @@
-export default function ListElement({ todo }) {
+export default function ListElement({ todo, handleRmTodo }) {
+  function handleOnChange(event) {}
   return (
     <li className="list-element">
-      <input className="check" type="checkbox"></input>
+      <input className="check" type="checkbox" checked={todo.completed}></input>
       <div className="todo-text-box">
         <span contentEditable="true" className="editable">
-          {todo.text}
+          {todo.completed ? <s>todo.text</s> : todo.text}
         </span>
-        <a className="delete-btn" id="1">
+        <a className="delete-btn " id="1" onClick={handleRmTodo}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"

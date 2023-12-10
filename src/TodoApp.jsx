@@ -5,16 +5,32 @@ import TodoList from "./TodoList";
 import { v4 as uuid } from "uuid";
 
 export default function TodoApp() {
-  const init = [
-    { id: uuid(), text: "take a shower", completed: false },
+  // MODEL
+  const initData = [
+    { id: uuid(), text: "take a shower", completed: true },
     { id: uuid(), text: "study coding", completed: false },
   ];
-  const [todoList, setTodoList] = useState(init);
+  const [todoList, setTodoList] = useState(initData);
+
+  const controller = {
+    addTodo(data) {
+      console;
+      setTodoList((arr) => [...arr, { id: uuid(), text: data, completed: false }]);
+    },
+
+    rmTodo(id) {
+      setTodoList((arr) => arr.filter((todo) => todo.id !== id));
+    },
+  };
+
+  // CONTROLLER
+
+  // VIEW
   return (
     <div id="root">
       <h1 className="title">Todos</h1>
-      <TodoForm />
-      <TodoList todoList={todoList} />
+      <TodoForm ctrl={controller} />
+      <TodoList ctrl={controller} todoList={todoList} />
     </div>
   );
 }
