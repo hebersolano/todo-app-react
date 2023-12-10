@@ -4,7 +4,14 @@ export default function TodoList({ todoList, ctrl }) {
   return (
     <ul className="todo-list">
       {todoList.map((todo) => {
-        return <ListElement key={todo.id} todo={todo} handleRmTodo={() => ctrl.rmTodo(todo.id)} />;
+        return (
+          <ListElement
+            key={todo.id}
+            todo={todo}
+            handleRmTodo={() => ctrl.rmTodo(todo.id)}
+            handleCompletedTodo={() => ctrl.completedTodo(todo.id)}
+          />
+        );
       })}
     </ul>
   );
