@@ -15,29 +15,33 @@ export default function TodoApp() {
   const controller = {
     addTodo(data) {
       console;
-      setTodoList((arr) => [
-        ...arr,
-        { id: uuid(), text: data, completed: false },
-      ]);
+      setTodoList((arr) => [...arr, { id: uuid(), text: data, completed: false }]);
     },
 
     rmTodo(id) {
       setTodoList((arr) => arr.filter((todo) => todo.id !== id));
     },
 
-    completedTodo(id) {
-      let bool;
+    completedTodo(id, bool) {
       setTodoList((arr) =>
         arr.map((todo) => {
           if (todo.id === id) {
-            bool = !todo.completed;
-            todo.completed = !todo.completed;
-            console.log(arr, "is todo completed?", todo.completed);
+            todo.completed = bool;
           }
           return todo;
-        }),
+        })
       );
-      return bool;
+    },
+
+    editTodo(id, text) {
+      setTodoList((arr) =>
+        arr.map((todo) => {
+          if (todo.id === id) {
+            todo.text = text;
+          }
+          return todo;
+        })
+      );
     },
   };
 

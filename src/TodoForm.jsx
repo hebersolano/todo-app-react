@@ -13,7 +13,7 @@ export default function TodoForm({ ctrl }) {
     if (inputValue) {
       ctrl.addTodo(event.target[0].value);
     }
-    // console.log(event.target[0].value);
+    setInput("");
   }
 
   return (

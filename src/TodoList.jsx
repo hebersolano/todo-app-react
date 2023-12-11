@@ -9,7 +9,8 @@ export default function TodoList({ todoList, ctrl }) {
             key={todo.id}
             todo={todo}
             handleRmTodo={() => ctrl.rmTodo(todo.id)}
-            handleCompletedTodo={() => ctrl.completedTodo(todo.id)}
+            handleCompletedTodo={(bool) => ctrl.completedTodo(todo.id, bool)}
+            editTodo={ctrl.editTodo}
           />
         );
       })}
