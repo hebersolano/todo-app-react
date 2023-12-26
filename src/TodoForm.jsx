@@ -26,7 +26,7 @@ export default function TodoForm({ ctrl }) {
         value={input}
         onChange={handleChange}
       ></input>
-      <button className="todo-btn btn">Submit</button>
+      <button className="todo-btn btn">Add</button>
     </form>
   );
 }

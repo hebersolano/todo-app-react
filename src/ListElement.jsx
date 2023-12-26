@@ -1,26 +1,17 @@
 import { useState } from "react";
 import EditableText from "./EditableText";
+import Editable from "./myEditable";
 
 export default function ListElement({ todo, handleRmTodo, handleCompletedTodo, editTodo }) {
-  const [isCompleted, setIsCompleted] = useState(todo.completed);
-  function handleOnChange(event) {
-    const target = event.target;
-    console.log(target.type);
-    switch (target.type) {
-      case "checkbox":
-        setIsCompleted((bool) => {
-          handleCompletedTodo(!bool);
-          return !bool;
-        });
-        break;
-    }
-
-    function getChange(event) {
-      console.log(event);
-    }
-    // todo.completed = !event.target.checked;
-    // setIsCompleted(handleCompletedTodo());
+  const isCompleted = todo.completed;
+  function handleOnChange() {
+    handleCompletedTodo(todo.id, !todo.completed);
   }
+
+  function getChange(text) {
+    if (todo.text !== text) editTodo(todo.id, text);
+  }
+
   return (
     <li className="list-element">
       <input className="check" type="checkbox" checked={isCompleted} onChange={handleOnChange}></input>
@@ -28,9 +19,8 @@ export default function ListElement({ todo, handleRmTodo, handleCompletedTodo, e
         {/* <span contentEditable="true" onChange={handleOnChange} className={isCompleted ? "text-line-through" : ""}>
           {todo.text}
         </span> */}
-        <span>
-          <EditableText onBlur={handleOnChange} getChange={getChange} />
-        </span>
+        <Editable text={todo.text} getChange={getChange} completed={todo.completed} />
+
         <a className="delete-btn " id="1" onClick={handleRmTodo}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
